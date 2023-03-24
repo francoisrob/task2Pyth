@@ -82,7 +82,7 @@ class GenerateCSV:
                 break
             else:
                 print("Invalid choice, please try again.")
-            time.sleep(1)
+                time.sleep(1)
 
     @staticmethod
     def get_initials(name):
