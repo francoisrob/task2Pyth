@@ -30,6 +30,7 @@ class ImportCSV:
             choice = input("Enter your choice> ")
             if choice in self.options:
                 self.options[choice]()
+                break
             elif choice == 'q':
                 print("Returning to main menu...")
                 break
@@ -64,13 +65,16 @@ class ImportCSV:
     def choosefile(self):
         Tk().withdraw()
         file = askopenfilename()
-        if file.endswith('.csv'):
-            print("Importing {}...".format(file))
-            tic = time.perf_counter()
-            self.importcsv(file)
-            toc = time.perf_counter()
-            print(f"Successfully imported {file} in {toc - tic:0.4f} seconds")
-            input("Press any key to return to the main menu...")
+        if not (len(file) == 0):
+            if file.endswith('.csv'):
+                print("Importing {}...".format(file))
+                tic = time.perf_counter()
+                self.importcsv(file)
+                toc = time.perf_counter()
+                print(f"Successfully imported {file} in {toc - tic:0.4f} seconds")
+                input("Press any key to return to the main menu...")
+            else:
+                print("Invalid file type, please try again.")
+                time.sleep(1)
         else:
-            print("Invalid file type, please try again.")
-        time.sleep(1)
+            self.run()
